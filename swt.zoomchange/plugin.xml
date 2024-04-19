@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.menus">
+         <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+              id="org.eclipse.swt.zoomchange"
+         	  label="Zoom Change">
+         </menu>
+       </menuContribution>
+       <menuContribution
+             locationURI="menu:org.eclipse.swt.zoomchange">
+            <dynamic
+                  class="swt.zoomchange.ZoomChangeMenuContribution"
+                  id="swt.zoomchange.dynamic">
+            </dynamic>
+       </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="swt.zoomchange.ZoomChangeHandler"
+            id="swt.zoomchange.change"
+            name="Change zoom">
+         <commandParameter
+               id="swt.zoomchange.change.zoom"
+               name="zoom"
+               optional="false"
+               typeId="swt.zoomchange.commandParameterType">
+         </commandParameter>
+      </command>
+      <commandParameterType
+            converter="swt.zoomchange.ZoomValueConverter"
+            id="swt.zoomchange.commandParameterType"
+            type="java.lang.Integer">
+      </commandParameterType>
+   </extension>
+
+</plugin>
